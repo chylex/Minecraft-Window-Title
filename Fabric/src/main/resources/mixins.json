@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "chylex.customwindowtitle.fabric.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+  ],
+  "client": [
+    "DisableVanillaTitle"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
