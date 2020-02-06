@@ -1,7 +1,7 @@
 {
     "pack": {
         "description": "Custom Window Title",
-        "pack_format": 5,
+        "pack_format": 3,
         "_comment": ""
     }
 }

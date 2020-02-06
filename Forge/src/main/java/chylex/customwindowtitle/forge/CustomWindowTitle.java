@@ -1,36 +1,51 @@
 package chylex.customwindowtitle.forge;
 import chylex.customwindowtitle.TitleParser;
-import net.minecraft.client.Minecraft;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig.Type;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import org.apache.commons.lang3.StringUtils;
+import org.lwjgl.opengl.Display;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Collections;
 
-@Mod("customwindowtitle")
+@Mod(modid = "customwindowtitle", useMetadata = true, clientSideOnly = true, acceptedMinecraftVersions = "*", acceptableRemoteVersions = "*")
 public class CustomWindowTitle{
-	private final ConfigValue<String> configTitle;
+	private static final String defaultTitle = "Minecraft {mcversion}";
+	private String configTitle;
 	
-	public CustomWindowTitle(){
-		ForgeConfigSpec.Builder configBuilder = new ForgeConfigSpec.Builder();
+	@EventHandler
+	public void onPreInit(FMLPreInitializationEvent e){
+		Path configFile = Paths.get(e.getModConfigurationDirectory().getAbsolutePath(), "customwindowtitle-client.toml");
 		
-		configTitle = configBuilder.define("title", "Minecraft {mcversion}");
-		
-		ModLoadingContext.get().registerConfig(Type.CLIENT, configBuilder.build());
-		FMLJavaModLoadingContext.get().getModEventBus().register(this);
+		try{
+			String prefix = "title = ";
+			
+			if (!Files.exists(configFile)){
+				Files.write(configFile, Collections.singletonList(prefix + '"' + defaultTitle + '"'), StandardCharsets.UTF_8);
+				configTitle = defaultTitle;
+			}
+			else{
+				configTitle = Files
+					.readAllLines(configFile, StandardCharsets.UTF_8)
+					.stream()
+					.filter(line -> line.startsWith(prefix))
+					.map(line -> StringUtils.strip(StringUtils.removeStart(line, prefix).trim(), "\""))
+					.findFirst()
+					.orElse(defaultTitle);
+			}
+		}catch(IOException ex){
+			throw new RuntimeException("CustomWindowTitle configuration error", ex);
+		}
 		
 		TokenData.register();
-	}
-	
-	@SubscribeEvent
-	public void onClientSetup(FMLClientSetupEvent e){
-		e.getMinecraftSupplier().get().execute(this::updateTitle);
+		updateTitle();
 	}
 	
 	private void updateTitle(){
-		Minecraft.getInstance().getMainWindow().func_230148_b_(TitleParser.parse(configTitle.get()));
+		Display.setTitle(TitleParser.parse(configTitle));
 	}
 }
