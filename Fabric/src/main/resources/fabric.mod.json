@@ -21,12 +21,9 @@
       "chylex.customwindowtitle.fabric.CustomWindowTitle"
     ]
   },
-  "mixins": [
-    "mixins.json"
-  ],
 
   "depends": {
     "fabricloader": ">=0.7.2",
-    "minecraft": "1.15.x"
+    "minecraft": "1.14.x"
   }
 }

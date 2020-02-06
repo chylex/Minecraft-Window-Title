@@ -4,6 +4,7 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
 import org.apache.commons.lang3.StringUtils;
+import org.lwjgl.glfw.GLFW;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -40,10 +41,10 @@ public class CustomWindowTitle implements ClientModInitializer{
 		}
 		
 		TokenData.register();
-		MinecraftClient.getInstance().execute(this::updateTitle);
+		MinecraftClient.getInstance().method_18858(this::updateTitle);
 	}
 	
 	private void updateTitle(){
-		MinecraftClient.getInstance().getWindow().setTitle(TitleParser.parse(configTitle));
+		GLFW.glfwSetWindowTitle(MinecraftClient.getInstance().window.getHandle(), TitleParser.parse(configTitle));
 	}
 }

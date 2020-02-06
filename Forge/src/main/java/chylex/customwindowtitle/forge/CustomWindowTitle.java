@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig.Type;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.lwjgl.glfw.GLFW;
 
 @Mod("customwindowtitle")
 public class CustomWindowTitle{
@@ -27,10 +28,10 @@ public class CustomWindowTitle{
 	
 	@SubscribeEvent
 	public void onClientSetup(FMLClientSetupEvent e){
-		e.getMinecraftSupplier().get().execute(this::updateTitle);
+		e.getMinecraftSupplier().get().enqueue(this::updateTitle);
 	}
 	
 	private void updateTitle(){
-		Minecraft.getInstance().getMainWindow().func_230148_b_(TitleParser.parse(configTitle.get()));
+		GLFW.glfwSetWindowTitle(Minecraft.getInstance().mainWindow.getHandle(), TitleParser.parse(configTitle.get()));
 	}
 }
