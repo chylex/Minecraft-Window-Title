@@ -4,6 +4,7 @@ import chylex.customwindowtitle.TitleParser;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.util.Window;
 
 public class CustomWindowTitle implements ClientModInitializer{
 	private final TitleConfig config;
@@ -19,6 +20,11 @@ public class CustomWindowTitle implements ClientModInitializer{
 	}
 	
 	private void updateTitle(){
-		MinecraftClient.getInstance().getWindow().setTitle(TitleParser.parse(config.getTitle()));
+		final Window window = MinecraftClient.getInstance().getWindow();
+		window.setTitle(TitleParser.parse(config.getTitle()));
+		
+		if (config.hasIcon()){
+			window.setIcon(config.readIcon16(), config.readIcon32());
+		}
 	}
 }

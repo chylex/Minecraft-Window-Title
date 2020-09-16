@@ -1,6 +1,7 @@
 package chylex.customwindowtitle.forge;
 import chylex.customwindowtitle.TitleConfig;
 import chylex.customwindowtitle.TitleParser;
+import net.minecraft.client.MainWindow;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -24,6 +25,11 @@ public class CustomWindowTitle{
 	}
 	
 	private void updateTitle(){
-		Minecraft.getInstance().getMainWindow().func_230148_b_(TitleParser.parse(config.getTitle()));
+		final MainWindow window = Minecraft.getInstance().getMainWindow();
+		window.func_230148_b_(TitleParser.parse(config.getTitle()));
+		
+		if (config.hasIcon()){
+			window.setWindowIcon(config.readIcon16(), config.readIcon32());
+		}
 	}
 }
