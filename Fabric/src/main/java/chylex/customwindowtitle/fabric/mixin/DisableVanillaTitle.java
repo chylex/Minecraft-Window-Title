@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(MinecraftClient.class)
 public final class DisableVanillaTitle{
 	@Inject(method = "updateWindowTitle()V", at = @At("HEAD"), cancellable = true)
-	private void updateTitle(CallbackInfo info){
+	private void updateTitle(final CallbackInfo info){
 		info.cancel();
 	}
 }

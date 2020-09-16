@@ -17,10 +17,10 @@ public class CustomWindowTitle implements ClientModInitializer{
 	
 	@Override
 	public void onInitializeClient(){
-		Path configFile = Paths.get(FabricLoader.getInstance().getConfigDirectory().getAbsolutePath(), "customwindowtitle-client.toml");
+		final Path configFile = Paths.get(FabricLoader.getInstance().getConfigDirectory().getAbsolutePath(), "customwindowtitle-client.toml");
 		
 		try{
-			String prefix = "title = ";
+			final String prefix = "title = ";
 			
 			if (!Files.exists(configFile)){
 				Files.write(configFile, Collections.singletonList(prefix + '"' + defaultTitle + '"'), StandardCharsets.UTF_8);
@@ -35,7 +35,7 @@ public class CustomWindowTitle implements ClientModInitializer{
 					.findFirst()
 					.orElse(defaultTitle);
 			}
-		}catch(IOException e){
+		}catch(final IOException e){
 			throw new RuntimeException("CustomWindowTitle configuration error", e);
 		}
 		

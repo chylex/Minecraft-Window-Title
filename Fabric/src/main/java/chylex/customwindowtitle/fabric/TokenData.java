@@ -16,7 +16,7 @@ final class TokenData{
 		return SharedConstants.getGameVersion().getName();
 	}
 	
-	static String getModVersion(String modId){
+	static String getModVersion(final String modId){
 		return FabricLoader.getInstance().getModContainer(modId).orElseThrow(() -> new TokenException("mod info for '" + modId + "' not found")).getMetadata().getVersion().getFriendlyString();
 	}
 }

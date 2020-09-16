@@ -10,21 +10,21 @@ public final class TitleParser{
 	private static final Pattern tokenRegex = Pattern.compile("\\{([a-z]+)(?::([^}]+))?}");
 	private static final Logger logger = LogManager.getLogger("CustomWindowTitle");
 	
-	public static String parse(String input){
-		StringBuffer buffer = new StringBuffer();
-		Matcher matcher = tokenRegex.matcher(input);
+	public static String parse(final String input){
+		final StringBuffer buffer = new StringBuffer();
+		final Matcher matcher = tokenRegex.matcher(input);
 		
 		while(matcher.find()){
-			String token = matcher.group(1);
-			String[] args = StringUtils.split(matcher.group(2), ',');
+			final String token = matcher.group(1);
+			final String[] args = StringUtils.split(matcher.group(2), ',');
 			
 			String result = null;
 			
 			try{
 				result = TitleTokens.getTokenFunction(token).apply(args == null ? ArrayUtils.EMPTY_STRING_ARRAY : args);
-			}catch(TokenException e){
+			}catch(final TokenException e){
 				logger.warn("Error processing token '" + token + "': " + e.getMessage());
-			}catch(Throwable t){
+			}catch(final Throwable t){
 				logger.warn("Error processing token '" + token + "': " + t.getMessage(), t);
 			}
 			

@@ -18,14 +18,14 @@ final class TokenData{
 		return SharedConstants.getVersion().getName();
 	}
 	
-	static String getModVersion(String modId){
-		ModFileInfo file = ModList.get().getModFileById(modId);
+	static String getModVersion(final String modId){
+		final ModFileInfo file = ModList.get().getModFileById(modId);
 		
 		if (file == null){
 			throw new TokenException("mod file for '" + modId + "' not found");
 		}
 		
-		for(IModInfo info : file.getMods()){
+		for(final IModInfo info : file.getMods()){
 			if (info.getModId().equals(modId)){
 				return info.getVersion().toString();
 			}

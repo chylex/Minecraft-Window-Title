@@ -11,29 +11,29 @@ public final class TitleTokens{
 	
 	private static final Map<String, Function<String[], String>> tokenMap = new HashMap<>();
 	
-	public static void registerToken(String token, Function<String[], String> processor){
+	public static void registerToken(final String token, final Function<String[], String> processor){
 		tokenMap.putIfAbsent(token, processor);
 	}
 	
-	public static Function<String[], String> getTokenFunction(String token){
+	public static Function<String[], String> getTokenFunction(final String token){
 		return tokenMap.getOrDefault(token, args -> null);
 	}
 	
 	// Arguments
 	
-	public static Function<String[], String> noArgs(Supplier<String> func){
+	public static Function<String[], String> noArgs(final Supplier<String> func){
 		return args -> args.length > 0 ? fail("expected no arguments, got " + args.length) : func.get();
 	}
 	
-	public static Function<String[], String> oneArg(UnaryOperator<String> func){
+	public static Function<String[], String> oneArg(final UnaryOperator<String> func){
 		return args -> args.length != 1 ? fail("expected 1 argument, got " + args.length) : func.apply(args[0]);
 	}
 	
-	public static Function<String[], String> rangeArgs(int min, int max, Function<String[], String> func){
+	public static Function<String[], String> rangeArgs(final int min, final int max, final Function<String[], String> func){
 		return args -> args.length < min || args.length > max ? fail("expected between " + min + " and " + max + " arguments, got " + args.length) : func.apply(args);
 	}
 	
-	private static String fail(String message){
+	private static String fail(final String message){
 		throw new TokenException(message);
 	}
 	

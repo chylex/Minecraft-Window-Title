@@ -15,7 +15,7 @@ public class CustomWindowTitle{
 	private final ConfigValue<String> configTitle;
 	
 	public CustomWindowTitle(){
-		ForgeConfigSpec.Builder configBuilder = new ForgeConfigSpec.Builder();
+		final ForgeConfigSpec.Builder configBuilder = new ForgeConfigSpec.Builder();
 		
 		configTitle = configBuilder.define("title", "Minecraft {mcversion}");
 		
@@ -26,7 +26,7 @@ public class CustomWindowTitle{
 	}
 	
 	@SubscribeEvent
-	public void onClientSetup(FMLClientSetupEvent e){
+	public void onClientSetup(final FMLClientSetupEvent e){
 		e.getMinecraftSupplier().get().execute(this::updateTitle);
 	}
 	

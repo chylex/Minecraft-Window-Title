@@ -1,7 +1,7 @@
 package chylex.customwindowtitle;
 
 public class TokenException extends RuntimeException{
-	public TokenException(String message){
+	public TokenException(final String message){
 		super(message);
 	}
 }
