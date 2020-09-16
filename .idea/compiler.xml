@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="Fabric" target="1.8" />
+      <module name="Fabric.main" target="1.8" />
+      <module name="Fabric.test" target="1.8" />
+      <module name="Forge" target="1.8" />
+      <module name="Forge.main" target="1.8" />
+      <module name="Forge.test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4">
+  <component name="ExternalSystem" externalSystem="GRADLE" externalSystemModuleGroup="chylex.customwindowtitle.fabric" externalSystemModuleVersion="v1.0.2" linkedProjectId="Fabric" linkedProjectPath="$MODULE_DIR$/../../Fabric" rootProjectPath="$MODULE_DIR$/../../Fabric" />
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../Fabric">
+      <excludeFolder url="file://$MODULE_DIR$/../../Fabric/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Fabric/build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../Fabric/run" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

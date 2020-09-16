@@ -1,25 +1,9 @@
-# gradle
+.idea/codeStyles/
+.idea/inspectionProfiles/
+.idea/modules/
+.idea/runConfigurations/
 
-.gradle/
-build/
-out/
-classes/
-
-# idea
-
-.idea/
-*.iml
-*.ipr
-*.iws
-
-# vscode
-
-.settings/
-.vscode/
-bin/
-.classpath
-.project
-
-# fabric
-
-run/
+.idea/$CACHE_FILE$
+.idea/dictionaries
+.idea/jarRepositories.xml
+.idea/workspace.xml
