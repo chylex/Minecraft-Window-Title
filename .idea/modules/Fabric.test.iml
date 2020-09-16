@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module version="4">
-  <component name="ExternalSystem" externalSystem="GRADLE" externalSystemModuleGroup="chylex.customwindowtitle.fabric" externalSystemModuleType="sourceSet" externalSystemModuleVersion="v1.0.2" linkedProjectId="Fabric:test" linkedProjectPath="$MODULE_DIR$/../../Fabric" rootProjectPath="$MODULE_DIR$/../../Fabric" />
+  <component name="ExternalSystem" externalSystem="GRADLE" externalSystemModuleGroup="chylex.customwindowtitle.fabric" externalSystemModuleType="sourceSet" externalSystemModuleVersion="v1.1.0" linkedProjectId="Fabric:test" linkedProjectPath="$MODULE_DIR$/../../Fabric" rootProjectPath="$MODULE_DIR$/../../Fabric" />
   <component name="FacetManager">
     <facet type="minecraft" name="Minecraft">
       <configuration>

@@ -7,7 +7,7 @@ issueTrackerURL = "https://github.com/chylex/Minecraft-Window-Title/issues"
 
 [[mods]]
 modId = "customwindowtitle"
-version = "1.0.2"
+version = "1.1.0"
 displayName = "Custom Window Title"
 displayURL = "https://github.com/chylex/Minecraft-Window-Title"
 
