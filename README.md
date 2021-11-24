@@ -58,6 +58,13 @@ title = "Minecraft {mcversion} - Custom Window Title {modversion:customwindowtit
 
 # For Developers
 
-Currently the common source files (package `chylex.customwindowtitle`) are just duplicated in the Forge and Fabric folders, and the jar files are combined with a horrible python script. If anyone has the time and patience to clean it up, I'd appreciate a Pull Request :P
+The mod sources are organized into 3 projects:
+- `src/` contains common source files and mixins
+- `Fabric/src/` contains source files specific for Fabric
+- `Forge/src/` contains source files specific for Forge
 
-For now, you can build either separate Forge and Fabric projects using `gradlew build` in either folder, or run `python BuildMerge.py` to automatically build both and combine them into a single `.jar` file.
+The Gradle project provides the following tasks:
+- `setupIdea` generates Minecraft sources and run configurations for IntelliJ IDEA
+- `assemble` creates 2 `.jar` files in the `build/dist` folder - one for Forge, one for Fabric
+
+When building against a Minecraft version that is only supported by one mod loader, open `gradle.properties` and comment or remove either `forgeVersion` or `fabricVersion` to disable them.

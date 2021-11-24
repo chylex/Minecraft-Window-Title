@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "chylex.customwindowtitle.mixin",
+  "refmap": "customwindowtitle.refmap.json",
+  "compatibilityLevel": "JAVA_8",
+  "client": [
+    "DisableVanillaTitle"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

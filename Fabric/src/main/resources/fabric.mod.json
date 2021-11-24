@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "customwindowtitle",
   "version": "${version}",
-
+  
   "name": "Custom Window Title",
   "authors": [
     "chylex"
@@ -12,9 +12,9 @@
     "sources": "https://github.com/chylex/Minecraft-Window-Title",
     "issues": "https://github.com/chylex/Minecraft-Window-Title/issues"
   },
-
+  
   "license": "Unlicense",
-
+  
   "environment": "client",
   "entrypoints": {
     "client": [
@@ -22,9 +22,9 @@
     ]
   },
   "mixins": [
-    "mixins.json"
+    "customwindowtitle.mixins.json"
   ],
-
+  
   "depends": {
     "fabricloader": ">=0.7.2",
     "minecraft": ">=1.15"

@@ -10,26 +10,26 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
 
 @Mod("customwindowtitle")
-public class CustomWindowTitle{
+public class CustomWindowTitle {
 	private final TitleConfig config;
 	
-	public CustomWindowTitle(){
+	public CustomWindowTitle() {
 		config = TitleConfig.read(FMLPaths.CONFIGDIR.get().toString());
-		FMLJavaModLoadingContext.get().getModEventBus().register(this);
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onClientSetup);
 		TokenData.register();
 	}
 	
 	@SubscribeEvent
-	public void onClientSetup(final FMLClientSetupEvent e){
+	public void onClientSetup(final FMLClientSetupEvent e) {
 		e.getMinecraftSupplier().get().execute(this::updateTitle);
 	}
 	
-	private void updateTitle(){
-		final MainWindow window = Minecraft.getInstance().getMainWindow();
-		window.func_230148_b_(TitleParser.parse(config.getTitle()));
+	private void updateTitle() {
+		final MainWindow window = Minecraft.getInstance().getWindow();
+		window.setTitle(TitleParser.parse(config.getTitle()));
 		
-		if (config.hasIcon()){
-			window.setWindowIcon(config.readIcon16(), config.readIcon32());
+		if (config.hasIcon()) {
+			window.setIcon(config.readIcon16(), config.readIcon32());
 		}
 	}
 }

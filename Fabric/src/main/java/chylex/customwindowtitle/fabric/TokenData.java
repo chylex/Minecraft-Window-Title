@@ -6,17 +6,17 @@ import static chylex.customwindowtitle.TitleTokens.noArgs;
 import static chylex.customwindowtitle.TitleTokens.oneArg;
 import static chylex.customwindowtitle.TitleTokens.registerToken;
 
-final class TokenData{
-	static void register(){
+final class TokenData {
+	static void register() {
 		registerToken("mcversion", noArgs(TokenData::getMinecraftVersion));
 		registerToken("modversion", oneArg(TokenData::getModVersion));
 	}
 	
-	static String getMinecraftVersion(){
-		return SharedConstants.getGameVersion().getName();
+	static String getMinecraftVersion() {
+		return SharedConstants.getCurrentVersion().getName();
 	}
 	
-	static String getModVersion(final String modId){
+	static String getModVersion(final String modId) {
 		return FabricLoader.getInstance().getModContainer(modId).orElseThrow(() -> new TokenException("mod info for '" + modId + "' not found")).getMetadata().getVersion().getFriendlyString();
 	}
 }
