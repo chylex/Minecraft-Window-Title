@@ -1,6 +1,7 @@
 package chylex.customwindowtitle.forge;
 import chylex.customwindowtitle.TitleConfig;
 import chylex.customwindowtitle.TitleParser;
+import chylex.customwindowtitle.data.CommonTokenData;
 import com.mojang.blaze3d.platform.Window;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -20,7 +21,7 @@ public class CustomWindowTitle {
 		config = TitleConfig.read(FMLPaths.CONFIGDIR.get().toString());
 		ModLoadingContext.get().registerExtensionPoint(DisplayTest.class, () -> new DisplayTest(() -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> true));
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onClientSetup);
-		TokenData.register();
+		CommonTokenData.register(new TokenProvider());
 	}
 	
 	@SubscribeEvent

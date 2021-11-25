@@ -1,6 +1,7 @@
 package chylex.customwindowtitle.fabric;
 import chylex.customwindowtitle.TitleConfig;
 import chylex.customwindowtitle.TitleParser;
+import chylex.customwindowtitle.data.CommonTokenData;
 import com.mojang.blaze3d.platform.Window;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
@@ -15,7 +16,7 @@ public class CustomWindowTitle implements ClientModInitializer {
 	
 	@Override
 	public void onInitializeClient() {
-		TokenData.register();
+		CommonTokenData.register(new TokenProvider());
 		Minecraft.getInstance().execute(this::updateTitle);
 	}
 	
