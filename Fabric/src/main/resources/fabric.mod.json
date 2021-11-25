@@ -1,19 +1,20 @@
 {
   "schemaVersion": 1,
   "id": "customwindowtitle",
+  "name": "${name}",
+  "description": "${description}",
   "version": "${version}",
+  "license": "${license}",
   
-  "name": "Custom Window Title",
   "authors": [
-    "chylex"
+    "${author}"
   ],
+  
   "contact": {
     "homepage": "https://chylex.com",
-    "sources": "https://github.com/chylex/Minecraft-Window-Title",
-    "issues": "https://github.com/chylex/Minecraft-Window-Title/issues"
+    "issues": "${issuesURL}",
+    "sources": "${sourcesURL}"
   },
-  
-  "license": "Unlicense",
   
   "environment": "client",
   "entrypoints": {

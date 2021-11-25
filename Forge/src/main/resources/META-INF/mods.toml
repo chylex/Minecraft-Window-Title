@@ -1,15 +1,16 @@
 modLoader = "javafml"
 loaderVersion = "[31,)"
 
-authors = "chylex"
-license = "Unlicense"
-issueTrackerURL = "https://github.com/chylex/Minecraft-Window-Title/issues"
+authors = "${author}"
+license = "${license}"
+issueTrackerURL = "${issuesURL}"
 
 [[mods]]
 modId = "customwindowtitle"
-version = "1.1.0"
-displayName = "Custom Window Title"
-displayURL = "https://github.com/chylex/Minecraft-Window-Title"
+version = "${version}"
+displayName = "${name}"
+description = "${description}"
+displayURL = "${sourcesURL}"
 
 [[dependencies.customwindowtitle]]
 modId = "minecraft"
