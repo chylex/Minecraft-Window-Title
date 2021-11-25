@@ -14,7 +14,7 @@ displayURL = "https://github.com/chylex/Minecraft-Window-Title"
 [[dependencies.customwindowtitle]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.15.2,)"
+versionRange = "[1.17,)"
 ordering = "NONE"
 side = "CLIENT"
 

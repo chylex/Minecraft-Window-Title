@@ -73,10 +73,13 @@ allprojects {
 		implementation("org.jetbrains:annotations:22.0.0")
 	}
 	
+	extensions.getByType<JavaPluginExtension>().apply {
+		toolchain.languageVersion.set(JavaLanguageVersion.of(16))
+	}
+	
 	tasks.withType<JavaCompile> {
 		options.encoding = "UTF-8"
-		sourceCompatibility = "1.8"
-		targetCompatibility = "1.8"
+		options.release.set(16)
 	}
 }
 

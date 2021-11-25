@@ -1,7 +1,7 @@
 package chylex.customwindowtitle.forge;
 import chylex.customwindowtitle.TitleConfig;
 import chylex.customwindowtitle.TitleParser;
-import net.minecraft.client.MainWindow;
+import com.mojang.blaze3d.platform.Window;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -21,11 +21,11 @@ public class CustomWindowTitle {
 	
 	@SubscribeEvent
 	public void onClientSetup(final FMLClientSetupEvent e) {
-		e.getMinecraftSupplier().get().execute(this::updateTitle);
+		e.enqueueWork(this::updateTitle);
 	}
 	
 	private void updateTitle() {
-		final MainWindow window = Minecraft.getInstance().getWindow();
+		final Window window = Minecraft.getInstance().getWindow();
 		window.setTitle(TitleParser.parse(config.getTitle()));
 		
 		if (config.hasIcon()) {
