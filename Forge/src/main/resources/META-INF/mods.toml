@@ -1,27 +1,27 @@
 modLoader = "javafml"
-loaderVersion = "[31,)"
+loaderVersion = "[0,)"
 
 authors = "${author}"
 license = "${license}"
 issueTrackerURL = "${issuesURL}"
 
 [[mods]]
-modId = "customwindowtitle"
+modId = "${id}"
 version = "${version}"
 displayName = "${name}"
 description = "${description}"
 displayURL = "${sourcesURL}"
 
-[[dependencies.customwindowtitle]]
+[[dependencies.${id}]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.17,)"
+versionRange = "[${minimumMinecraftVersion},)"
 ordering = "NONE"
 side = "CLIENT"
 
-[[dependencies.customwindowtitle]]
+[[dependencies.${id}]]
 modId = "forge"
 mandatory = true
-versionRange = "[31.2.45,)"
+versionRange = "[${minimumForgeVersion},)"
 ordering = "NONE"
 side = "CLIENT"

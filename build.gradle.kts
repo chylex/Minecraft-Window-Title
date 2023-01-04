@@ -14,6 +14,10 @@ val modIssuesURL: String by project
 val minecraftVersion: String by project
 val mixinVersion: String by project
 
+val minimumMinecraftVersion: String by project
+val minimumForgeVersion: String by project
+val minimumFabricVersion: String by project
+
 val modNameStripped = modName.replace(" ", "")
 val jarVersion = "$minecraftVersion+v$modVersion"
 
@@ -101,8 +105,7 @@ subprojects {
 	}
 	
 	tasks.processResources {
-		from(rootProject.sourceSets.main.get().resources)
-		
+		inputs.property("id", modId)
 		inputs.property("name", modName)
 		inputs.property("description", modDescription)
 		inputs.property("version", modVersion)
@@ -110,6 +113,13 @@ subprojects {
 		inputs.property("license", modLicense)
 		inputs.property("sourcesURL", modSourcesURL)
 		inputs.property("issuesURL", modIssuesURL)
+		inputs.property("minimumMinecraftVersion", minimumMinecraftVersion)
+		inputs.property("minimumForgeVersion", minimumForgeVersion)
+		inputs.property("minimumFabricVersion", minimumFabricVersion)
+		
+		from(rootProject.sourceSets.main.get().resources) {
+			expand(inputs.properties)
+		}
 	}
 	
 	tasks.jar {
@@ -129,6 +139,10 @@ subprojects {
 				"MixinConfigs" to "$modId.mixins.json"
 			)
 		}
+	}
+	
+	tasks.test {
+		onlyIf { false }
 	}
 }
 

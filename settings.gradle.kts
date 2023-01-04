@@ -6,6 +6,12 @@ pluginManagement {
 		maven(url = "https://maven.fabricmc.net/") { name = "Fabric" }
 		maven(url = "https://repo.spongepowered.org/repository/maven-public/") { name = "Sponge Snapshots" }
 	}
+	
+	plugins {
+		if (settings.extra.has("loomVersion")) {
+			id("fabric-loom") version "${settings.extra["loomVersion"]}-SNAPSHOT"
+		}
+	}
 }
 
 if (settings.extra.has("forgeVersion")) {

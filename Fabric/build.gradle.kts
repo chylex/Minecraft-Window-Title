@@ -4,7 +4,7 @@ val fabricVersion: String by project
 
 plugins {
 	idea
-	id("fabric-loom") version "0.10-SNAPSHOT"
+	id("fabric-loom")
 }
 
 dependencies {

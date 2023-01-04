@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "customwindowtitle",
+  "id": "${id}",
   "name": "${name}",
   "description": "${description}",
   "version": "${version}",
@@ -22,12 +22,13 @@
       "chylex.customwindowtitle.fabric.CustomWindowTitle"
     ]
   },
-  "mixins": [
-    "customwindowtitle.mixins.json"
-  ],
+  
+  "mixins": [{
+    "config": "${id}.mixins.json"
+  }],
   
   "depends": {
-    "fabricloader": ">=0.7.2",
-    "minecraft": ">=1.17"
+    "fabricloader": ">=${minimumFabricVersion}",
+    "minecraft": ">=${minimumMinecraftVersion}"
   }
 }

@@ -1,6 +1,6 @@
 {
     "pack": {
-        "description": "Custom Window Title",
+        "description": "${name}",
         "pack_format": 5,
         "_comment": ""
     }
