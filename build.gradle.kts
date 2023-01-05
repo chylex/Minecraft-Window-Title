@@ -78,12 +78,12 @@ allprojects {
 	}
 	
 	extensions.getByType<JavaPluginExtension>().apply {
-		toolchain.languageVersion.set(JavaLanguageVersion.of(16))
+		toolchain.languageVersion.set(JavaLanguageVersion.of(17))
 	}
 	
 	tasks.withType<JavaCompile> {
 		options.encoding = "UTF-8"
-		options.release.set(16)
+		options.release.set(17)
 	}
 }
 
