@@ -1,11 +1,11 @@
 package chylex.customwindowtitle;
+import net.minecraft.server.packs.resources.IoSupplier;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -113,19 +113,11 @@ public final class TitleConfig {
 		return icon16 != null && icon32 != null;
 	}
 	
-	public InputStream readIcon16() {
-		try {
-			return Files.newInputStream(icon16, StandardOpenOption.READ);
-		} catch (final IOException e) {
-			throw new RuntimeException("CustomWindowTitle could not open the specified 16x16 icon: " + icon16, e);
-		}
+	public IoSupplier<InputStream> readIcon16() {
+		return IoSupplier.create(icon16);
 	}
 	
-	public InputStream readIcon32() {
-		try {
-			return Files.newInputStream(icon32, StandardOpenOption.READ);
-		} catch (final IOException e) {
-			throw new RuntimeException("CustomWindowTitle could not open the specified 32x32 icon: " + icon16, e);
-		}
+	public IoSupplier<InputStream> readIcon32() {
+		return IoSupplier.create(icon32);
 	}
 }
