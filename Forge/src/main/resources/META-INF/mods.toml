@@ -1,16 +1,16 @@
 modLoader = "javafml"
 loaderVersion = "[0,)"
 
-authors = "${author}"
 license = "${license}"
 issueTrackerURL = "${issuesURL}"
 
 [[mods]]
 modId = "${id}"
-version = "${version}"
 displayName = "${name}"
-description = "${description}"
 displayURL = "${sourcesURL}"
+description = "${description}"
+authors = "${author}"
+version = "${version}"
 
 [[dependencies.${id}]]
 modId = "minecraft"
