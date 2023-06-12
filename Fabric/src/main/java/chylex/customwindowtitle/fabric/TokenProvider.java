@@ -1,4 +1,5 @@
 package chylex.customwindowtitle.fabric;
+
 import chylex.customwindowtitle.TokenException;
 import chylex.customwindowtitle.data.CommonTokenProvider;
 import net.fabricmc.loader.api.FabricLoader;

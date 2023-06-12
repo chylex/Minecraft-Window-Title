@@ -1,28 +1,25 @@
 package chylex.customwindowtitle;
-import net.minecraft.server.packs.resources.IoSupplier;
+
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public final class TitleConfig {
-	private static final Map<String, String> DEFAULTS;
+	private static final ImmutableMap<String, String> DEFAULTS = ImmutableMap.<String, String>builder()
+		.put("title", "Minecraft {mcversion}")
+		.build();
 	
-	static {
-		final Map<String, String> defaults = new LinkedHashMap<>();
-		
-		defaults.put("title", "Minecraft {mcversion}");
-		defaults.put("icon16", "");
-		defaults.put("icon32", "");
-		
-		DEFAULTS = Collections.unmodifiableMap(defaults);
-	}
+	private static final ImmutableSet<String> IGNORED_KEYS = ImmutableSet.of(
+		"icon16",
+		"icon32"
+	);
 	
 	public static TitleConfig read(final String folder) {
 		final Path configFile = Paths.get(folder, "customwindowtitle-client.toml");
@@ -46,7 +43,7 @@ public final class TitleConfig {
 					if (config.containsKey(key)) {
 						config.put(key, value);
 					}
-					else {
+					else if (!IGNORED_KEYS.contains(key)) {
 						throw new RuntimeException("CustomWindowTitle configuration has an invalid key: " + key);
 					}
 				});
@@ -55,25 +52,7 @@ public final class TitleConfig {
 			throw new RuntimeException("CustomWindowTitle configuration error", e);
 		}
 		
-		final String icon16 = config.get("icon16");
-		final String icon32 = config.get("icon32");
-		
-		final Path pathIcon16 = icon16.isEmpty() ? null : Paths.get(folder, icon16);
-		final Path pathIcon32 = icon32.isEmpty() ? null : Paths.get(folder, icon32);
-		
-		if ((pathIcon16 == null) != (pathIcon32 == null)) {
-			throw new RuntimeException("CustomWindowTitle configuration specifies only one icon, both 'icon16' and 'icon32' must be set.");
-		}
-		
-		if (pathIcon16 != null && Files.notExists(pathIcon16)) {
-			throw new RuntimeException("CustomWindowTitle 16x16 icon not found: " + pathIcon16);
-		}
-		
-		if (pathIcon32 != null && Files.notExists(pathIcon32)) {
-			throw new RuntimeException("CustomWindowTitle 32x32 icon not found: " + pathIcon32);
-		}
-		
-		return new TitleConfig(config.get("title"), pathIcon16, pathIcon32);
+		return new TitleConfig(config.get("title"));
 	}
 	
 	private static String parseTrimmedValue(String value) {
@@ -96,28 +75,12 @@ public final class TitleConfig {
 	}
 	
 	private final String title;
-	private final Path icon16;
-	private final Path icon32;
 	
-	private TitleConfig(final String title, final Path icon16, final Path icon32) {
+	private TitleConfig(final String title) {
 		this.title = title;
-		this.icon16 = icon16;
-		this.icon32 = icon32;
 	}
 	
 	public String getTitle() {
 		return title;
-	}
-	
-	public boolean hasIcon() {
-		return icon16 != null && icon32 != null;
-	}
-	
-	public IoSupplier<InputStream> readIcon16() {
-		return IoSupplier.create(icon16);
-	}
-	
-	public IoSupplier<InputStream> readIcon32() {
-		return IoSupplier.create(icon32);
 	}
 }

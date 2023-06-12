@@ -1,4 +1,5 @@
 package chylex.customwindowtitle.forge;
+
 import chylex.customwindowtitle.TokenException;
 import chylex.customwindowtitle.data.CommonTokenProvider;
 import net.minecraftforge.fml.ModList;

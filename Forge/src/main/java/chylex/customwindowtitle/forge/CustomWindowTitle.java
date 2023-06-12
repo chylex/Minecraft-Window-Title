@@ -1,8 +1,8 @@
 package chylex.customwindowtitle.forge;
+
 import chylex.customwindowtitle.TitleConfig;
 import chylex.customwindowtitle.TitleParser;
 import chylex.customwindowtitle.data.CommonTokenData;
-import com.mojang.blaze3d.platform.Window;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.IExtensionPoint.DisplayTest;
@@ -29,11 +29,6 @@ public class CustomWindowTitle {
 	}
 	
 	private void updateTitle() {
-		final Window window = Minecraft.getInstance().getWindow();
-		window.setTitle(TitleParser.parse(config.getTitle()));
-		
-		if (config.hasIcon()) {
-			window.setIcon(config.readIcon16(), config.readIcon32());
-		}
+		Minecraft.getInstance().getWindow().setTitle(TitleParser.parse(config.getTitle()));
 	}
 }

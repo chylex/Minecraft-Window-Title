@@ -1,9 +1,10 @@
 package chylex.customwindowtitle.data;
-import net.minecraft.client.Minecraft;
+
+import net.minecraft.SharedConstants;
 
 public interface CommonTokenProvider {
 	default String getMinecraftVersion() {
-		return Minecraft.getInstance().getGame().getVersion().getName();
+		return SharedConstants.getCurrentVersion().getName();
 	}
 	
 	String getModVersion(final String modId);

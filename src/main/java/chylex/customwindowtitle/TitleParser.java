@@ -1,4 +1,5 @@
 package chylex.customwindowtitle;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -11,7 +12,7 @@ public final class TitleParser {
 	private static final Logger logger = LogManager.getLogger("CustomWindowTitle");
 	
 	public static String parse(final String input) {
-		final StringBuffer buffer = new StringBuffer();
+		final StringBuilder buffer = new StringBuilder();
 		final Matcher matcher = tokenRegex.matcher(input);
 		
 		while (matcher.find()) {
