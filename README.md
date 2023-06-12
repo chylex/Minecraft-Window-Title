@@ -31,6 +31,8 @@ If any of the tokens aren't working, search the game log for **CustomWindowTitle
 
 ### Changing the Icon
 
+**This feature is currently not supported in Minecraft 1.20.**
+
 You must create two PNG images with sizes 16x16 and 32x32 pixels. The images **must be saved with transparency** even if they don't use it, **otherwise the icons will appear corrupted**. In Krita for example, you must check _Store alpha channel (transparency)_ when saving the image.
 
 The _icon16_ and _icon32_ configuration entries point to the PNG files relative to the **.minecraft/config** folder. For example, if you place the two icons in a folder named _customwindowtitle_ as follows:
