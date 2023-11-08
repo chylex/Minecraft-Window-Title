@@ -1,16 +1,16 @@
-package chylex.customwindowtitle.forge;
+package chylex.customwindowtitle.neoforge;
 
 import chylex.customwindowtitle.TitleConfig;
 import chylex.customwindowtitle.TitleParser;
 import chylex.customwindowtitle.data.CommonTokenData;
 import net.minecraft.client.Minecraft;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.IExtensionPoint.DisplayTest;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.loading.FMLPaths;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.IExtensionPoint.DisplayTest;
+import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.fml.loading.FMLPaths;
 
 @Mod("customwindowtitle")
 public class CustomWindowTitle {

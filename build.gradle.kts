@@ -1,6 +1,6 @@
+@file:Suppress("ConvertLambdaToReference")
+
 import org.gradle.api.file.DuplicatesStrategy.EXCLUDE
-import java.text.SimpleDateFormat
-import java.util.Date
 
 val modId: String by project
 val modName: String by project
@@ -15,22 +15,16 @@ val minecraftVersion: String by project
 val mixinVersion: String by project
 
 val minimumMinecraftVersion: String by project
-val minimumForgeVersion: String by project
+val minimumNeoForgeVersion: String by project
 val minimumFabricVersion: String by project
 
 val modNameStripped = modName.replace(" ", "")
 val jarVersion = "$minecraftVersion+v$modVersion"
 
-buildscript {
-	repositories {
-		maven("https://repo.spongepowered.org/maven")
-	}
-}
-
 plugins {
-	`java-library`
 	idea
-	id("org.spongepowered.gradle.vanilla") version "0.2.1-SNAPSHOT"
+	`java-library`
+	id("net.neoforged.gradle.vanilla")
 }
 
 idea {
@@ -38,8 +32,8 @@ idea {
 		excludeDirs.add(file("gradle"))
 		excludeDirs.add(file("run"))
 		
-		if (findProject(":Forge") == null) {
-			excludeDirs.add(file("Forge"))
+		if (findProject(":NeoForge") == null) {
+			excludeDirs.add(file("NeoForge"))
 		}
 		
 		if (findProject(":Fabric") == null) {
@@ -55,6 +49,7 @@ repositories {
 
 dependencies {
 	implementation("org.spongepowered:mixin:$mixinVersion")
+	implementation("net.minecraft:client:$minecraftVersion")
 	api("com.google.code.findbugs:jsr305:3.0.2")
 }
 
@@ -62,16 +57,15 @@ base {
 	archivesName.set("$modNameStripped-Common")
 }
 
-minecraft {
-	version(minecraftVersion)
-	runs.clear()
+runs {
+	clear()
 }
 
 allprojects {
 	group = "com.$modAuthor.$modId"
 	version = modVersion
 	
-	apply(plugin = "java")
+	apply(plugin = "java-library")
 	
 	dependencies {
 		implementation("org.jetbrains:annotations:22.0.0")
@@ -88,10 +82,6 @@ allprojects {
 }
 
 subprojects {
-	repositories {
-		maven("https://repo.spongepowered.org/maven")
-	}
-	
 	dependencies {
 		implementation(rootProject)
 	}
@@ -100,8 +90,10 @@ subprojects {
 		archivesName.set("$modNameStripped-${project.name}")
 	}
 	
-	tasks.withType<JavaCompile> {
-		source({ rootProject.sourceSets.main.get().allSource })
+	listOf("compileJava", "compileTestJava").forEach {
+		tasks.named<JavaCompile>(it) {
+			source({ rootProject.sourceSets.main.get().allSource })
+		}
 	}
 	
 	tasks.processResources {
@@ -114,7 +106,7 @@ subprojects {
 		inputs.property("sourcesURL", modSourcesURL)
 		inputs.property("issuesURL", modIssuesURL)
 		inputs.property("minimumMinecraftVersion", minimumMinecraftVersion)
-		inputs.property("minimumForgeVersion", minimumForgeVersion)
+		inputs.property("minimumNeoForgeVersion", minimumNeoForgeVersion)
 		inputs.property("minimumFabricVersion", minimumFabricVersion)
 		
 		from(rootProject.sourceSets.main.get().resources) {
@@ -135,30 +127,12 @@ subprojects {
 				"Implementation-Title" to "$modNameStripped-${project.name}",
 				"Implementation-Vendor" to modAuthor,
 				"Implementation-Version" to modVersion,
-				"Implementation-Timestamp" to SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").format(Date()),
-				"MixinConfigs" to "$modId.mixins.json"
 			)
 		}
 	}
 	
 	tasks.test {
 		onlyIf { false }
-	}
-}
-
-tasks.register("setupIdea") {
-	group = "mod"
-	
-	dependsOn(tasks.findByName("decompile"))
-	
-	val forge = findProject(":Forge")
-	if (forge != null) {
-		dependsOn(forge.tasks.getByName("genIntellijRuns"))
-	}
-	
-	val fabric = findProject(":Fabric")
-	if (fabric != null) {
-		dependsOn(fabric.tasks.getByName("genSources"))
 	}
 }
 

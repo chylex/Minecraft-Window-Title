@@ -1,10 +1,10 @@
-package chylex.customwindowtitle.forge;
+package chylex.customwindowtitle.neoforge;
 
 import chylex.customwindowtitle.TokenException;
 import chylex.customwindowtitle.data.CommonTokenProvider;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.forgespi.language.IModFileInfo;
-import net.minecraftforge.forgespi.language.IModInfo;
+import net.neoforged.fml.ModList;
+import net.neoforged.neoforgespi.language.IModFileInfo;
+import net.neoforged.neoforgespi.language.IModInfo;
 
 final class TokenProvider implements CommonTokenProvider {
 	@Override

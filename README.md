@@ -69,4 +69,4 @@ The Gradle project provides the following tasks:
 - `setupIdea` generates Minecraft sources and run configurations for IntelliJ IDEA
 - `assemble` creates 2 `.jar` files in the `build/dist` folder - one for Forge, one for Fabric
 
-When building against a Minecraft version that is only supported by one mod loader, open `gradle.properties` and comment or remove either `forgeVersion` or `fabricVersion` to disable them.
+When building against a Minecraft version that is only supported by one mod loader, open `gradle.properties` and comment or remove either `neoForgeVersion` or `fabricVersion` to disable them.

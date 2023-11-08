@@ -12,6 +12,9 @@ description = "${description}"
 authors = "${author}"
 version = "${version}"
 
+[[mixins]]
+config = "${id}.mixins.json"
+
 [[dependencies.${id}]]
 modId = "minecraft"
 mandatory = true
@@ -20,8 +23,8 @@ ordering = "NONE"
 side = "CLIENT"
 
 [[dependencies.${id}]]
-modId = "forge"
+modId = "neoforge"
 mandatory = true
-versionRange = "[${minimumForgeVersion},)"
+versionRange = "[${minimumNeoForgeVersion},)"
 ordering = "NONE"
 side = "CLIENT"

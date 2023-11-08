@@ -3,8 +3,11 @@ val minecraftVersion: String by project
 val fabricVersion: String by project
 
 plugins {
-	idea
 	id("fabric-loom")
+}
+
+repositories {
+	maven("https://repo.spongepowered.org/maven")
 }
 
 dependencies {
@@ -15,12 +18,17 @@ dependencies {
 
 loom {
 	runs {
-		named("client") {
-			configName = "Fabric Client"
-			client()
+		configureEach {
 			runDir("../run")
 			ideConfigGenerated(true)
 		}
+		
+		named("client") {
+			configName = "Fabric Client"
+			client()
+		}
+		
+		findByName("server")?.let(::remove)
 	}
 	
 	mixin {
