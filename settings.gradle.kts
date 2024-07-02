@@ -5,18 +5,18 @@ pluginManagement {
 		gradlePluginPortal()
 		maven(url = "https://maven.neoforged.net/releases") { name = "NeoForge" }
 		maven(url = "https://maven.fabricmc.net/") { name = "Fabric" }
-		maven(url = "https://repo.spongepowered.org/repository/maven-public/") { name = "Sponge Snapshots" }
 	}
 	
 	plugins {
-		if (settings.extra.has("neoForgeVersion")) {
-			id("net.neoforged.gradle.vanilla") version "7.0.41"
-			id("net.neoforged.gradle.userdev") version "7.0.41"
-			id("net.neoforged.gradle.mixin") version "7.0.41"
+		val neoGradleVersion = settings.extra.get("neoGradleVersion") as? String
+		if (neoGradleVersion != null) {
+			id("net.neoforged.gradle.userdev") version neoGradleVersion
+			id("net.neoforged.gradle.mixin") version neoGradleVersion
 		}
 		
-		if (settings.extra.has("loomVersion")) {
-			id("fabric-loom") version "${settings.extra["loomVersion"]}-SNAPSHOT"
+		val loomVersion = settings.extra.get("loomVersion") as? String
+		if (loomVersion != null) {
+			id("fabric-loom") version "$loomVersion-SNAPSHOT"
 		}
 	}
 }

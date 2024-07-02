@@ -1,0 +1,13 @@
+{
+  "jars": [{
+    "identifier": {
+      "group": "${group}",
+      "artifact": "${id}"
+    },
+    "version": {
+      "artifactVersion": "${version}",
+      "range": "[${version}]"
+    },
+    "path": "jars/${jarPrefix}-NeoForge.jar"
+  }]
+}

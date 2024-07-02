@@ -17,14 +17,14 @@ config = "${id}.mixins.json"
 
 [[dependencies.${id}]]
 modId = "minecraft"
-mandatory = true
+type = "required"
 versionRange = "[${minimumMinecraftVersion},)"
 ordering = "NONE"
-side = "CLIENT"
+side = "${sidesForNeoForge}"
 
 [[dependencies.${id}]]
 modId = "neoforge"
-mandatory = true
+type = "required"
 versionRange = "[${minimumNeoForgeVersion},)"
 ordering = "NONE"
-side = "CLIENT"
+side = "${sidesForNeoForge}"

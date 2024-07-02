@@ -16,7 +16,7 @@
     "sources": "${sourcesURL}"
   },
   
-  "environment": "client",
+  "environment": "${sidesForFabric}",
   "entrypoints": {
     "client": [
       "chylex.customwindowtitle.fabric.CustomWindowTitle"
@@ -24,7 +24,8 @@
   },
   
   "mixins": [{
-    "config": "${id}.mixins.json"
+    "config": "${id}.mixins.json",
+    "environment": "${sidesForFabric}"
   }],
   
   "depends": {

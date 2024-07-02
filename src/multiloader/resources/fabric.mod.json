@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "${id}_multiloader",
+  "name": "${name} (Multiloader)",
+  "description": "${description}",
+  "version": "${version}",
+  "license": "${license}",
+  
+  "authors": [
+    "${author}"
+  ],
+  
+  "contact": {
+    "homepage": "https://chylex.com",
+    "issues": "${issuesURL}",
+    "sources": "${sourcesURL}"
+  },
+  
+  "environment": "${sidesForFabric}",
+  
+  "jars": [{
+      "file": "jars/${jarPrefix}-Fabric.jar"
+  }],
+  
+  "custom": {
+    "modmenu": {
+      "parent": "${id}",
+      "badges": [ "library" ],
+      "update_checker": false
+    }
+  }
+}

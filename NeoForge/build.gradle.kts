@@ -1,7 +1,4 @@
-val modId: String by project
-val minecraftVersion: String by project
 val neoForgeVersion: String by project
-val mixinVersion: String by project
 
 plugins {
 	id("net.neoforged.gradle.userdev")
@@ -13,16 +10,19 @@ dependencies {
 }
 
 runs {
+	val runJvmArgs: Set<String> by project
+	
 	configureEach {
-		modSource(project.sourceSets.main.get())
 		workingDirectory = file("../run")
+		modSource(project.sourceSets.main.get())
+		jvmArguments(runJvmArgs)
 	}
 	
-	create("client")
+	removeIf { it.name != "client" }
 }
 
 tasks.processResources {
-	filesMatching("META-INF/mods.toml") {
+	filesMatching("META-INF/neoforge.mods.toml") {
 		expand(inputs.properties)
 	}
 }

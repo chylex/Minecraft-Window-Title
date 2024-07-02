@@ -1,13 +1,11 @@
+import org.gradle.jvm.tasks.Jar
+
 val modId: String by project
 val minecraftVersion: String by project
 val fabricVersion: String by project
 
 plugins {
 	id("fabric-loom")
-}
-
-repositories {
-	maven("https://repo.spongepowered.org/maven")
 }
 
 dependencies {
@@ -18,8 +16,11 @@ dependencies {
 
 loom {
 	runs {
+		val runJvmArgs: Set<String> by project
+		
 		configureEach {
 			runDir("../run")
+			vmArgs(runJvmArgs)
 			ideConfigGenerated(true)
 		}
 		
@@ -32,7 +33,7 @@ loom {
 	}
 	
 	mixin {
-		add(sourceSets.main.get(), "$modId.refmap.json")
+		defaultRefmapName.set("$modId.refmap.json")
 	}
 }
 
@@ -42,6 +43,11 @@ tasks.processResources {
 	}
 }
 
-tasks.remapJar {
-	archiveVersion.set(tasks.jar.get().archiveVersion)
+tasks.register<Jar>("uncompressedRemapJar") {
+	group = "fabric"
+	
+	from(tasks.remapJar.map { it.outputs.files.map(::zipTree) })
+
+	archiveClassifier.set("uncompressed")
+	entryCompression = ZipEntryCompression.STORED // Reduces size of multiloader jar.
 }
