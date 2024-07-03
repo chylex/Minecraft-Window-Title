@@ -26,6 +26,7 @@ You can use the following special tokens in the _title_ configuration entry:
 
 * **{mcversion}** - current Minecraft version
 * **{modversion:<span style="text-decoration: underline;">modid</span>}** - version of installed mod with the identifier _modid_
+* **{username}** - current username
 
 If any of the tokens aren't working, search the game log for **CustomWindowTitle** and you should see the reason, otherwise please file an issue on the [issue tracker](https://github.com/chylex/Minecraft-Window-Title/issues) with as many details as possible.
 
