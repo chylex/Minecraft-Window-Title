@@ -1,8 +1,6 @@
-# For Users
-
 ## Installation
 
-The mod supports [NeoForge](https://neoforged.net/) and [Fabric](https://fabricmc.net/) (*) mod loaders. Follow either mod loader's installation guide, then download the mod file for your Minecraft version from [CurseForge](https://www.curseforge.com/minecraft/mc-mods/custom-window-title/files) or [Modrinth](https://modrinth.com/mod/custom-window-title/versions), and install it into the `.minecraft/mods` folder.
+The mod supports [NeoForge](https://neoforged.net/) and [Fabric](https://fabricmc.net/) (*) mod loaders. Follow either mod loader's installation guide, then [download the mod file](https://modrinth.com/mod/custom-window-title/versions) for your Minecraft version, and install it into the `.minecraft/mods` folder.
 
 (*) Fabric API is **not** required.
 
@@ -19,7 +17,6 @@ icon32 = ''
 ```
 
 Only edit text inside quotes or apostrophes.
-
 ### Changing the Title
 
 You can use the following special tokens in the _title_ configuration entry:
@@ -50,22 +47,11 @@ icon32 = 'customwindowtitle/icon32.png'
 ```
 
 ## Screenshots
-
 These screenshots were taken using the following example configuration:
 
 ```toml
 title = "Minecraft {mcversion} - Custom Window Title {modversion:customwindowtitle}"
 ```
 
-![](https://github.com/chylex/Minecraft-Window-Title/blob/master/.github/README/screenshot.png)
-
-# For Developers
-
-The mod sources are organized into 3 projects:
-- `src/` contains common source files and mixins
-- `Fabric/src/` contains source files specific for Fabric
-- `NeoForge/src/` contains source files specific for NeoForge
-
-The `assemble` Gradle task creates a single `.jar` file for both mod loaders in the `build/dist` folder.
-
-When building against a Minecraft version that is only supported by one mod loader, open `gradle.properties` and comment or remove either `neoForgeVersion` or `fabricVersion` to disable them.
+![Screenshot 1](https://cdn.modrinth.com/data/RGH5gtzF/images/583e2cde5254f758f890abe5d018f46201dd856e.png)
+![Screenshot 2](https://cdn.modrinth.com/data/RGH5gtzF/images/68b89c57f5505625c2cff00fd5fe7489571dcae3.png)
