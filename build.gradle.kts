@@ -133,10 +133,8 @@ subprojects {
 		archivesName.set("$modNameStripped-${project.name}")
 	}
 	
-	listOf("compileJava", "compileTestJava").forEach {
-		tasks.named<JavaCompile>(it) {
-			source({ rootProject.sourceSets.main.get().allSource })
-		}
+	tasks.compileJava {
+		source({ rootProject.sourceSets.main.get().allSource })
 	}
 	
 	tasks.processResources {

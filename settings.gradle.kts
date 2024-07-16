@@ -8,10 +8,9 @@ pluginManagement {
 	}
 	
 	plugins {
-		val neoGradleVersion = settings.extra.get("neoGradleVersion") as? String
-		if (neoGradleVersion != null) {
-			id("net.neoforged.gradle.userdev") version neoGradleVersion
-			id("net.neoforged.gradle.mixin") version neoGradleVersion
+		val neoModDevVersion = settings.extra.get("neoModDevVersion") as? String
+		if (neoModDevVersion != null) {
+			id("net.neoforged.moddev") version neoModDevVersion
 		}
 		
 		val loomVersion = settings.extra.get("loomVersion") as? String

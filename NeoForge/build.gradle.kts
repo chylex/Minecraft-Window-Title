@@ -1,24 +1,33 @@
+val modId: String by project
 val neoForgeVersion: String by project
 
 plugins {
-	id("net.neoforged.gradle.userdev")
-	id("net.neoforged.gradle.mixin")
+	id("net.neoforged.moddev")
 }
 
-dependencies {
-	implementation("net.neoforged:neoforge:$neoForgeVersion")
-}
-
-runs {
-	val runJvmArgs: Set<String> by project
+neoForge {
+	version = neoForgeVersion
 	
-	configureEach {
-		workingDirectory = file("../run")
-		modSource(project.sourceSets.main.get())
-		jvmArguments(runJvmArgs)
+	mods {
+		register(modId) {
+			sourceSet(sourceSets.main.get())
+			sourceSet(rootProject.sourceSets.main.get())
+		}
 	}
 	
-	removeIf { it.name != "client" }
+	runs {
+		val runJvmArgs: Set<String> by project
+		
+		configureEach {
+			gameDirectory = file("../run")
+			jvmArguments.addAll(runJvmArgs)
+		}
+		
+		register("client") {
+			ideName.set("NeoForge Client")
+			client()
+		}
+	}
 }
 
 tasks.processResources {
