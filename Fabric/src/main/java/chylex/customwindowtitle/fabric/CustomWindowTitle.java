@@ -11,7 +11,7 @@ public class CustomWindowTitle implements ClientModInitializer {
 	private final TitleConfig config;
 	
 	public CustomWindowTitle() {
-		config = TitleConfig.read(FabricLoader.getInstance().getConfigDir().toAbsolutePath().toString());
+		config = TitleConfig.load(FabricLoader.getInstance().getConfigDir().toAbsolutePath().toString());
 	}
 	
 	@Override
