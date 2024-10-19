@@ -36,7 +36,7 @@ If any of the tokens aren't working, search the game log for **CustomWindowTitle
 
 Create a square PNG image whose dimensions are a power of two, such as 32x32 or 48x48. Put the PNG file into the `.minecraft/config` folder, either directly or into a subfolder.
 
-The icon **must be saved with transparency** even if it don't use it, otherwise the icon may be corrupted or not appear at all. In Krita for example, you must check _Store alpha channel (transparency)_ when saving.
+The icon **must be saved with transparency** even if it doesn't use it, otherwise the icon may be corrupted or not appear at all. In Krita, for example, you must check _Store alpha channel (transparency)_ when saving.
 
 The _icon_ configuration entry points to the PNG file relative to `.minecraft/config`.
 
