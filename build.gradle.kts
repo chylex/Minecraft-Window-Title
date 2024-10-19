@@ -25,12 +25,16 @@ buildscript {
 	repositories {
 		maven("https://repo.spongepowered.org/maven")
 	}
+	
+	dependencies {
+		classpath("org.spongepowered:vanillagradle:0.2.1-20231203.020957-71")
+	}
 }
 
 plugins {
 	`java-library`
 	idea
-	id("org.spongepowered.gradle.vanilla") version "0.2.1-SNAPSHOT"
+	id("org.spongepowered.gradle.vanilla") version "0.2.1-20231203.020957-71"
 }
 
 idea {
