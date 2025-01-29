@@ -116,6 +116,10 @@ allprojects {
 		inputs.property("minimumMinecraftVersion", minimumMinecraftVersion)
 		inputs.property("minimumNeoForgeVersion", minimumNeoForgeVersion)
 		inputs.property("minimumFabricVersion", minimumFabricVersion)
+		
+		from(rootProject.file("logo.png")) {
+			into("assets/$modId")
+		}
 	}
 	
 	tasks.withType<AbstractArchiveTask>().configureEach {

@@ -1,4 +1,7 @@
+import net.neoforged.moddevgradle.dsl.RunModel
+
 val modId: String by project
+val modSides: String by project
 val neoForgeVersion: String by project
 
 plugins {
@@ -23,9 +26,20 @@ neoForge {
 			jvmArguments.addAll(runJvmArgs)
 		}
 		
-		register("client") {
+		fun side(name: String, configure: RunModel.() -> Unit) {
+			if (modSides == "both" || modSides == name) {
+				register(name, configure)
+			}
+		}
+		
+		side("client") {
 			ideName.set("NeoForge Client")
 			client()
+		}
+		
+		side("server") {
+			ideName.set("NeoForge Server")
+			server()
 		}
 	}
 }
