@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public final class TitleParser {
+final class TitleParser {
 	private static final Pattern tokenRegex = Pattern.compile("\\{([a-z]+)(?::([^}]+))?}");
 	private static final Logger logger = LogManager.getLogger("CustomWindowTitle");
 	
