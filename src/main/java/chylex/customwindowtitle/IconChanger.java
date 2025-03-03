@@ -1,6 +1,8 @@
 package chylex.customwindowtitle;
 
 import net.minecraft.client.Minecraft;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWImage;
 import org.lwjgl.stb.STBImage;
@@ -12,6 +14,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public final class IconChanger {
+	private static final Logger LOGGER = LogManager.getLogger("CustomWindowTitle");
+	
 	private IconChanger() {}
 	
 	public static void setIcon(Path iconPath) {
@@ -20,28 +24,29 @@ public final class IconChanger {
 	}
 	
 	private static void setWindowIcon(long windowHandle, Path iconPath) {
+		ByteBuffer icon = null;
 		try (MemoryStack stack = MemoryStack.stackPush()) {
 			IntBuffer w = stack.mallocInt(1);
 			IntBuffer h = stack.mallocInt(1);
 			IntBuffer channels = stack.mallocInt(1);
 			
-			ByteBuffer icon = loadIcon(iconPath, w, h, channels);
+			icon = loadIcon(iconPath, w, h, channels);
 			if (icon == null) {
 				return;
 			}
 			
-			try (GLFWImage glfwImage1 = GLFWImage.malloc(); GLFWImage glfwImage2 = GLFWImage.malloc(); GLFWImage.Buffer icons = GLFWImage.malloc(2)) {
-				glfwImage1.set(w.get(0), h.get(0), icon);
-				glfwImage2.set(w.get(0), h.get(0), icon);
-				
-				icons.put(0, glfwImage1);
-				icons.put(1, glfwImage2);
+			try (GLFWImage.Buffer icons = GLFWImage.malloc(1)) {
+				GLFWImage iconImage = icons.get(0);
+				iconImage.set(w.get(0), h.get(0), icon);
 				
 				GLFW.glfwSetWindowIcon(windowHandle, icons);
 			}
 		} catch (Exception e) {
-			System.err.println("Failed to set window icon: " + iconPath);
-			e.printStackTrace();
+			LOGGER.error("Failed to set window icon from path: {}", iconPath, e);
+		} finally {
+			if (icon != null) {
+				STBImage.stbi_image_free(icon);
+			}
 		}
 	}
 	
@@ -52,7 +57,7 @@ public final class IconChanger {
 		ByteBuffer icon = STBImage.stbi_load_from_memory(buffer, w, h, channels, 4);
 		
 		if (icon == null) {
-			System.err.println("Failed to load image from memory for: " + path + " - " + STBImage.stbi_failure_reason());
+			LOGGER.error("Failed to load image from path: {} - {}", path, STBImage.stbi_failure_reason());
 		}
 		
 		return icon;
