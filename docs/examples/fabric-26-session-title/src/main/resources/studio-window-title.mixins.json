@@ -1,0 +1,8 @@
+{
+  "required": true,
+  "minVersion": "0.8.7",
+  "package": "dev.elric.studiotitle",
+  "compatibilityLevel": "JAVA_25",
+  "client": ["MinecraftTitleMixin"],
+  "injectors": {"defaultRequire": 1}
+}
